@@ -1,0 +1,1124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lesson03：案例研究─沙灘螃蟹(2) &mdash; greenfoot 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="greenfoot 1.0 documentation" href="index.html" />
+    <link rel="next" title="Lesson04：案例研究─鋼琴模擬" href="Lesson04.html" />
+    <link rel="prev" title="Lesson02：案例研究─沙灘螃蟹(1)" href="Lesson02.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson03-2">
+<h1>Lesson03：案例研究─沙灘螃蟹(2)<a class="headerlink" href="#lesson03-2" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference download internal" href="https://drive.google.com/open?id=0B8fsh0D6-sHnWTJpVm9IdGJvRmM"><code class="xref download docutils literal"><span class="pre">案例下載(.zip)</span></code></a></p>
+<p>本案例出自Michael Kölling(2009).Introduction to Programming with Greenfoot.</p>
+<p>開啟範例檔案crab。</p>
+<img alt="_images/005_001.png" src="_images/005_001.png" />
+<div class="section" id="crab">
+<h2>Crab 程式碼說明<a class="headerlink" href="#crab" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// （ World 、 Actor 、 GreenfootImage 及 Greenfoot ）</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 螃蟹類別的定義。螃蟹生活在沙灘上。</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Crab</span> <span class="kd">extends</span> <span class="n">Animal</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span>
+    <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>第1行： <strong>import greenfoot.*;</strong></p>
+<p>匯入greenfoot套件庫，在每個類別中，均需要此行敘述來匯入greenfoot套件庫。</p>
+<p>在此行「//」後方的灰色文字為單行註解。</p>
+<p>第3~5行：類別的註解</p>
+<p>通常會在此說明此類別及註明程式碼作者與版本。所謂註解是指該部分只是說明給人看的，並不會影響程式的編譯結果。當編譯程式在編譯的過程中，如果遇到這個符號會自動忽視符號後面的文字，也就是不會執行後面的文字。通常我們會在每程式的最前加一些關於此程式的相關資訊，以便日後程式維護與修改時，便於了解而容易上手。</p>
+<p>第6行：<strong>public class Crab extends Animal</strong>：代表Crab 繼承Animal</p>
+<p>定義Crab類別做為Animal的子類別。public是公開的意思。class是類別的意思，extends是延展的意思。這三個字具有特殊意義與用途，被稱為「保留字」。在撰寫程式時，保留字是不能隨便亂用的，這些具有特殊意義的字符在程式中所擺放的位置及順序是固定的。而字與字之間要以空白字元隔開。</p>
+<p>第7,11行 <strong>｛…｝</strong> 區塊定義了class的內容，注意大括號是會成對出現的。</p>
+<p>第8行：目前整個類別僅含一個空的方法，即act方法</p>
+<p><strong>public void act( )</strong>：代表方法的簽名(signature)</p>
+<blockquote>
+<div><p>public意思是公開的，是指宣告此方法可被任何類別使用。</p>
+<p>void 意思是無傳回值。</p>
+<p>act 是此方法的名稱。</p>
+<p>() 為傳入的參數，在此例中不需傳入參數。</p>
+</div></blockquote>
+<p>第9~10行： <strong>｛…｝</strong> 表示此方法的主體敘述。注意大括號是會成對出現的。</p>
+</div>
+<div class="section" id="id1">
+<h2>1.自訂方法<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>在沙灘螃蟹的案例中，我們為螃蟹增加了不少的行為，所以在act()方法中的程式碼愈來愈多，這樣程式閱讀與維護起來都會變得不容易，因此，我們將使用自訂方法來改寫程式碼，雖然程式的功能不變，但是程式碼的架構變得更清楚了。</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// （ World 、 Actor 、 GreenfootImage 及 Greenfoot ）</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 螃蟹類別的定義。螃蟹生活在沙灘上。</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Crab</span> <span class="kd">extends</span> <span class="n">Animal</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">move</span><span class="o">();</span>
+<span class="hll">        <span class="n">turnAtEdge</span><span class="o">();</span>
+</span><span class="hll">        <span class="n">randomTurn</span><span class="o">();</span>
+</span><span class="hll">        <span class="n">lookForWorm</span><span class="o">();</span>
+</span><span class="hll">        <span class="n">checkKey</span><span class="o">();</span>
+</span>    <span class="o">}</span>
+    
+<span class="hll">    <span class="cm">/**</span>
+</span><span class="hll"><span class="cm">     * 遇到邊緣就轉彎</span>
+</span><span class="hll"><span class="cm">     */</span>
+</span><span class="hll">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnAtEdge</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">atWorldEdge</span><span class="o">())</span> <span class="o">{</span>
+</span><span class="hll">            <span class="n">turn</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+</span><span class="hll">        <span class="o">}</span>
+</span><span class="hll">    <span class="o">}</span>
+</span><span class="hll">    
+</span><span class="hll">    <span class="cm">/**</span>
+</span><span class="hll"><span class="cm">     * 隨機轉彎</span>
+</span><span class="hll"><span class="cm">     */</span>
+</span><span class="hll">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">randomTurn</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">getRandomNumber</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">            <span class="n">turn</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+</span><span class="hll">        <span class="o">}</span>
+</span><span class="hll">    <span class="o">}</span>
+</span><span class="hll">    
+</span><span class="hll">    <span class="cm">/**</span>
+</span><span class="hll"><span class="cm">     * 遇到蟲就把它吃掉</span>
+</span><span class="hll"><span class="cm">     */</span>
+</span><span class="hll">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">lookForWorm</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">canSee</span><span class="o">(</span><span class="n">Worm</span><span class="o">.</span><span class="na">class</span><span class="o">))</span> <span class="o">{</span>
+</span><span class="hll">            <span class="n">eat</span><span class="o">(</span><span class="n">Worm</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class="hll">            <span class="c1">//播放聲音</span>
+</span><span class="hll">            <span class="n">Greenfoot</span><span class="o">.</span><span class="na">playSound</span><span class="o">(</span><span class="s">&quot;slurp.wav&quot;</span><span class="o">);</span>
+</span><span class="hll">        <span class="o">}</span>
+</span><span class="hll">    <span class="o">}</span>
+</span><span class="hll">    
+</span><span class="hll">    <span class="cm">/**</span>
+</span><span class="hll"><span class="cm">     * 用方向鍵控制螃蟹轉彎</span>
+</span><span class="hll"><span class="cm">     */</span>
+</span><span class="hll">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">checkKey</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">isKeyDown</span><span class="o">(</span><span class="s">&quot;left&quot;</span><span class="o">))</span> <span class="o">{</span>
+</span><span class="hll">            <span class="n">turn</span><span class="o">(-</span><span class="mi">5</span><span class="o">);</span>
+</span><span class="hll">        <span class="o">}</span>
+</span><span class="hll">        
+</span><span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">isKeyDown</span><span class="o">(</span><span class="s">&quot;right&quot;</span><span class="o">))</span> <span class="o">{</span>
+</span><span class="hll">            <span class="n">turn</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+</span><span class="hll">        <span class="o">}</span>
+</span><span class="hll">    <span class="o">}</span>
+</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>第17-19行是註解。程式在編譯的時候，會忽略註解，它的功能主要是給人類方便閱讀與理解程式碼。</p>
+<p>第20-24行是自訂方法的主體，當我們新增一個方法時，程式並不會自動去執行它，必須要被呼叫後才會執行這個方法中的程式碼，因此，我們在act()方法中呼叫turnAtEdge();(第11行)</p>
+</div>
+<div class="section" id="id2">
+<h2>2.隨機產生1隻蟲在不同的位置<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>開啟CrabWorld類別，找到新增蟲到場景上的程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (Actor, World, Greenfoot, GreenfootImage)</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CrabWorld</span> <span class="kd">extends</span> <span class="n">World</span>
+<span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * 建立螃蟹的世界（沙灘）。螃蟹的世界有 560×560 格方格，每格方格大</span>
+<span class="cm">     * 小為 1×1 點。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">CrabWorld</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="mi">560</span><span class="o">,</span> <span class="mi">560</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+
+        <span class="n">prepare</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 準備應用程式啟動時的世界, 也就是：建立一開始的世界</span>
+<span class="cm">     * 物件以及將它們加到世界中</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">prepare</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Crab</span> <span class="n">crab</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Crab</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">crab</span><span class="o">,</span> <span class="mi">235</span><span class="o">,</span> <span class="mi">280</span><span class="o">);</span>
+<span class="hll">        <span class="n">Worm</span> <span class="n">worm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Worm</span><span class="o">();</span>
+</span><span class="hll">        <span class="n">addObject</span><span class="o">(</span><span class="n">worm</span><span class="o">,</span> <span class="mi">184</span><span class="o">,</span> <span class="mi">133</span><span class="o">);</span>
+</span><span class="hll">        <span class="n">Worm</span> <span class="n">worm2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Worm</span><span class="o">();</span>
+</span><span class="hll">        <span class="n">addObject</span><span class="o">(</span><span class="n">worm2</span><span class="o">,</span> <span class="mi">352</span><span class="o">,</span> <span class="mi">130</span><span class="o">);</span>
+</span><span class="hll">        <span class="n">Worm</span> <span class="n">worm3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Worm</span><span class="o">();</span>
+</span><span class="hll">        <span class="n">addObject</span><span class="o">(</span><span class="n">worm3</span><span class="o">,</span> <span class="mi">392</span><span class="o">,</span> <span class="mi">317</span><span class="o">);</span>
+</span><span class="hll">        <span class="n">Worm</span> <span class="n">worm4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Worm</span><span class="o">();</span>
+</span><span class="hll">        <span class="n">addObject</span><span class="o">(</span><span class="n">worm4</span><span class="o">,</span> <span class="mi">156</span><span class="o">,</span> <span class="mi">403</span><span class="o">);</span>
+</span><span class="hll">        <span class="n">Worm</span> <span class="n">worm5</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Worm</span><span class="o">();</span>
+</span>        <span class="n">addObject</span><span class="o">(</span><span class="n">worm5</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">248</span><span class="o">);</span>
+        <span class="n">Lobster</span> <span class="n">lobster</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">125</span><span class="o">);</span>
+        <span class="n">Lobster</span> <span class="n">lobster2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster2</span><span class="o">,</span> <span class="mi">429</span><span class="o">,</span> <span class="mi">285</span><span class="o">);</span>
+        <span class="n">Lobster</span> <span class="n">lobster3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster3</span><span class="o">,</span> <span class="mi">214</span><span class="o">,</span> <span class="mi">455</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>將新增蟲的程式碼刪掉到只剩一隻蟲。</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (Actor, World, Greenfoot, GreenfootImage)</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CrabWorld</span> <span class="kd">extends</span> <span class="n">World</span>
+<span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * 建立螃蟹的世界（沙灘）。螃蟹的世界有 560×560 格方格，每格方格大</span>
+<span class="cm">     * 小為 1×1 點。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">CrabWorld</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="mi">560</span><span class="o">,</span> <span class="mi">560</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+
+        <span class="n">prepare</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 準備應用程式啟動時的世界, 也就是：建立一開始的世界</span>
+<span class="cm">     * 物件以及將它們加到世界中</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">prepare</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Crab</span> <span class="n">crab</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Crab</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">crab</span><span class="o">,</span> <span class="mi">235</span><span class="o">,</span> <span class="mi">280</span><span class="o">);</span>
+        
+<span class="hll">        <span class="n">Worm</span> <span class="n">worm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Worm</span><span class="o">();</span>
+</span><span class="hll">        <span class="n">addObject</span><span class="o">(</span><span class="n">worm</span><span class="o">,</span> <span class="mi">184</span><span class="o">,</span> <span class="mi">133</span><span class="o">);</span>
+</span>
+        <span class="n">Lobster</span> <span class="n">lobster</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">125</span><span class="o">);</span>
+        <span class="n">Lobster</span> <span class="n">lobster2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster2</span><span class="o">,</span> <span class="mi">429</span><span class="o">,</span> <span class="mi">285</span><span class="o">);</span>
+        <span class="n">Lobster</span> <span class="n">lobster3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster3</span><span class="o">,</span> <span class="mi">214</span><span class="o">,</span> <span class="mi">455</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>從功能表「幫助/Greenfoot類別說明文件」可檢閱Greenfoot類別的內容。其中，我們可以找到取亂數的方法：</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Greenfoot</span><span class="o">.</span><span class="n">getRandomNumber</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>這個方法呼叫將傳回0…n-1間的整數。</p>
+<p>在沙灘螃蟹的案例中，若要新增一隻蟲在隨機的位置上：</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (Actor, World, Greenfoot, GreenfootImage)</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CrabWorld</span> <span class="kd">extends</span> <span class="n">World</span>
+<span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * 建立螃蟹的世界（沙灘）。螃蟹的世界有 560×560 格方格，每格方格大</span>
+<span class="cm">     * 小為 1×1 點。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">CrabWorld</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="mi">560</span><span class="o">,</span> <span class="mi">560</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+
+        <span class="n">prepare</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 準備應用程式啟動時的世界, 也就是：建立一開始的世界</span>
+<span class="cm">     * 物件以及將它們加到世界中</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">prepare</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Crab</span> <span class="n">crab</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Crab</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">crab</span><span class="o">,</span> <span class="mi">235</span><span class="o">,</span> <span class="mi">280</span><span class="o">);</span>
+        
+<span class="hll">        <span class="n">Worm</span> <span class="n">worm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Worm</span><span class="o">();</span>
+</span><span class="hll">        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getRandomNumber</span><span class="o">(</span><span class="mi">560</span><span class="o">);</span>
+</span><span class="hll">        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getRandomNumber</span><span class="o">(</span><span class="mi">560</span><span class="o">);</span>
+</span><span class="hll">        <span class="n">addObject</span><span class="o">(</span><span class="n">worm</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+</span>
+        <span class="n">Lobster</span> <span class="n">lobster</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">125</span><span class="o">);</span>
+        <span class="n">Lobster</span> <span class="n">lobster2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster2</span><span class="o">,</span> <span class="mi">429</span><span class="o">,</span> <span class="mi">285</span><span class="o">);</span>
+        <span class="n">Lobster</span> <span class="n">lobster3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster3</span><span class="o">,</span> <span class="mi">214</span><span class="o">,</span> <span class="mi">455</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>變數(variable)是什麼？從字面上解釋，變數就是「可變的數」，也就是其值可以隨著程式的執行過程而改變。假如用更精確的說法來解釋，程式設計上的變數，代表的就是一個擁有名稱的體儲存空間。</p>
+<p>在使用變數前，要宣告它的存在才能使用，在宣告時就要告訴電腦這個變數的的名稱與資料型態，電腦才能配置適當的記憶體空間來儲存這個變數的值，常見的Java基本資料型態，如下表。</p>
+<p><strong>boolean</strong>     布林值，其值僅有true(真)與false(假)兩種變化。</p>
+<p><strong>int</strong> 整數(integer)，使用4個Bytes，範圍2147483647 ~ -2147483648。</p>
+<p><strong>float</strong>       浮點數，使用4個Bytes，範圍3.402823e+38 ~ 1.401298e-45。</p>
+<p><strong>char</strong>        字元，使用2個Bytes。</p>
+<p>變數宣告的語法如下：</p>
+<p>資料型態  變數名稱;</p>
+<p>如果兩個變數都屬於相同的資料型態，則宣告的語法如下：</p>
+<p>資料型態  變數名稱, 變數名稱;</p>
+<p>例如：我們宣告兩個整數變數來記錄蟲的x,y座標位置。</p>
+<div class="highlight-python"><div class="highlight"><pre>int x, y;
+</pre></div>
+</div>
+<p>變數經過我們上述的宣告後，就可以指定值給它，讓變數儲存我們所指定的內容。指定變數值的語法是：</p>
+<p>變數名稱 = 資料值;</p>
+<p>此處「=」的意思是「指定為」，整句話的意思是「把右邊的資料值指定給左邊的變數」。當新的資料值指定給變數後，該變數原先儲存的資料就會消失。</p>
+<p>為了讓我們更容易閱讀程式，通常我們會根據變數所代表的意義，取一個有意義的名稱，而且必須符合Java命名規定：</p>
+<ol class="arabic simple">
+<li>使用英文字母、阿拉伯數字、底線等符號來做為識別字。</li>
+<li>識別字沒有長度的限制。</li>
+<li>識別字名稱不能用阿拉伯數字做為開頭。</li>
+<li>英文字母的大小寫是有所區別的。</li>
+</ol>
+<p>在變數的命名，通常我們會採用小駝峰式命名法，即第一個單字以小寫字母開始；第二個單字的首字母大寫，例如：firstName、lastName。「駝峰式」命名規則可視為一種慣例，並無絕對與強制，為的是增加識別和可讀性。</p>
+</div>
+<div class="section" id="id3">
+<h2>3.隨機產生5隻蟲在不同的位置<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>開啟CrabWorld類別，將新增1隻蟲的程式碼放到計次式迴圈中，程式碼如下：</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (Actor, World, Greenfoot, GreenfootImage)</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CrabWorld</span> <span class="kd">extends</span> <span class="n">World</span>
+<span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * 建立螃蟹的世界（沙灘）。螃蟹的世界有 560×560 格方格，每格方格大</span>
+<span class="cm">     * 小為 1×1 點。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">CrabWorld</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="mi">560</span><span class="o">,</span> <span class="mi">560</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+
+        <span class="n">prepare</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 準備應用程式啟動時的世界, 也就是：建立一開始的世界</span>
+<span class="cm">     * 物件以及將它們加到世界中</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">prepare</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Crab</span> <span class="n">crab</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Crab</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">crab</span><span class="o">,</span> <span class="mi">235</span><span class="o">,</span> <span class="mi">280</span><span class="o">);</span>
+
+<span class="hll">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span>            <span class="n">Worm</span> <span class="n">worm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Worm</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getRandomNumber</span><span class="o">(</span><span class="mi">560</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getRandomNumber</span><span class="o">(</span><span class="mi">560</span><span class="o">);</span>
+            <span class="n">addObject</span><span class="o">(</span><span class="n">worm</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+<span class="hll">        <span class="o">}</span>
+</span>
+        <span class="n">Lobster</span> <span class="n">lobster</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">125</span><span class="o">);</span>
+        <span class="n">Lobster</span> <span class="n">lobster2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster2</span><span class="o">,</span> <span class="mi">429</span><span class="o">,</span> <span class="mi">285</span><span class="o">);</span>
+        <span class="n">Lobster</span> <span class="n">lobster3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster3</span><span class="o">,</span> <span class="mi">214</span><span class="o">,</span> <span class="mi">455</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>計次式迴圈的語法如下：</p>
+<div class="highlight-python"><div class="highlight"><pre>for (起始運算式; 測試條件式; 遞增運算式) {
+  程式敘述;
+}
+</pre></div>
+</div>
+<p>在起始運算式中，設定迴圈變數的起始值，起始運算式僅在進入迴圈時執行。測試條件式是用來判斷迴圈是否繼續執行的限制情況，當條件式為true時，則進入迴圈執行程式敘述，當條件式為false時，則跳出迴圈。而遞增運算式則是每次執行完程式敘述後，利用此運算式更改迴圈變數的值。</p>
+<p>例如：我們要在起始場景新增5隻蟲，我們不用重複地寫同樣的指令，如下：</p>
+<div class="highlight-python"><div class="highlight"><pre>// 一行一行新增5隻蟲。
+addObject(new Worm(), 100, 100);
+addObject(new Worm (), 100, 200);
+addObject(new Worm (), 100, 300);
+addObject(new Worm (), 100, 400);
+addObject(new Worm (), 100, 500);
+</pre></div>
+</div>
+<p>利用計次式迴圈十，我們只需要寫一行程式敘述即可，如下：</p>
+<div class="highlight-python"><div class="highlight"><pre>    // 用迴圈新增5隻蟲。
+for (int i=1; i&lt;=5; i++) {
+    addObject(new Worm(), 100, 100*i);
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>4.螃蟹動畫製作<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/005_002.png" src="_images/005_002.png" />
+<p>在沙灘螃蟹的案例中，我們想製作螃蟹走路的動畫，其技巧是重複地切換二張不同的圖片。</p>
+<p>首先在螃蟹的程式碼中，新增兩個屬性，用來儲存兩張圖片。</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// （ World 、 Actor 、 GreenfootImage 及 Greenfoot ）</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 螃蟹類別的定義。螃蟹生活在沙灘上。</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Crab</span> <span class="kd">extends</span> <span class="n">Animal</span>
+<span class="o">{</span>
+<span class="hll">    <span class="kd">private</span> <span class="n">GreenfootImage</span> <span class="n">image1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GreenfootImage</span><span class="o">(</span><span class="s">&quot;crab.png&quot;</span><span class="o">);</span>
+</span><span class="hll">    <span class="kd">private</span> <span class="n">GreenfootImage</span> <span class="n">image2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GreenfootImage</span><span class="o">(</span><span class="s">&quot;crab2.png&quot;</span><span class="o">);</span>
+</span>    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">move</span><span class="o">();</span>
+        <span class="n">turnAtEdge</span><span class="o">();</span>
+        <span class="n">randomTurn</span><span class="o">();</span>
+        <span class="n">lookForWorm</span><span class="o">();</span>
+        <span class="n">checkKey</span><span class="o">();</span>
+    <span class="o">}</span>
+    
+	<span class="c1">//以下程式碼省略</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>接著撰寫切換圖片的程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// （ World 、 Actor 、 GreenfootImage 及 Greenfoot ）</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 螃蟹類別的定義。螃蟹生活在沙灘上。</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Crab</span> <span class="kd">extends</span> <span class="n">Animal</span>
+<span class="o">{</span>
+    <span class="kd">private</span> <span class="n">GreenfootImage</span> <span class="n">image1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GreenfootImage</span><span class="o">(</span><span class="s">&quot;crab.png&quot;</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="n">GreenfootImage</span> <span class="n">image2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GreenfootImage</span><span class="o">(</span><span class="s">&quot;crab2.png&quot;</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">move</span><span class="o">();</span>
+        <span class="n">turnAtEdge</span><span class="o">();</span>
+        <span class="n">randomTurn</span><span class="o">();</span>
+        <span class="n">lookForWorm</span><span class="o">();</span>
+        <span class="n">checkKey</span><span class="o">();</span>
+<span class="hll">        <span class="n">switchImage</span><span class="o">();</span>
+</span>    <span class="o">}</span>
+
+<span class="hll">    <span class="cm">/**</span>
+</span><span class="hll"><span class="cm">     * 製作螃蟹動畫</span>
+</span><span class="hll"><span class="cm">     */</span>    
+</span><span class="hll">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">switchImage</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">getImage</span><span class="o">()==</span><span class="n">image1</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">            <span class="n">setImage</span><span class="o">(</span><span class="n">image2</span><span class="o">);</span>
+</span><span class="hll">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="hll">            <span class="n">setImage</span><span class="o">(</span><span class="n">image1</span><span class="o">);</span>
+</span><span class="hll">        <span class="o">}</span>
+</span><span class="hll">    <span class="o">}</span>
+</span>
+	<span class="c1">//以下程式碼省略</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>雙向選擇結構</p>
+<div class="highlight-python"><div class="highlight"><pre>if (條件式) {
+  程式敘述A;
+} else {
+  程式敘述B;
+}
+</pre></div>
+</div>
+<p>程式會根據條件式的傳回值，選擇執行程式敘述A或程式敘述B。</p>
+<p>如果條件式傳回true時，程式會執行程式敘述A，否則(else)，則程式會執行程式敘述B。兩種情況只有其中一種會被執行。</p>
+<img alt="_images/005_003.png" src="_images/005_003.png" />
+</div>
+<div class="section" id="id5">
+<h2>5.增加計數器<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>新增一個Counter類別，選取圖片後，填入以下的程式碼。</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+<span class="kn">import</span> <span class="nn">java.awt.Color</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * A simple counter with graphical representation as an actor on screen.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author mik</span>
+<span class="cm"> * @version 1.0</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Counter</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Color</span> <span class="n">transparent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Color</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="n">GreenfootImage</span> <span class="n">background</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">value</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">target</span><span class="o">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Create a new counter, initialised to 0.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Counter</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">background</span> <span class="o">=</span> <span class="n">getImage</span><span class="o">();</span>  <span class="c1">// get image from class</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">updateImage</span><span class="o">();</span>
+    <span class="o">}</span>
+    
+    <span class="cm">/**</span>
+<span class="cm">     * Animate the display to count up (or down) to the current target value.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">value</span><span class="o">++;</span>
+            <span class="n">updateImage</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">value</span><span class="o">--;</span>
+            <span class="n">updateImage</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Add a new score to the current counter value.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">score</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">target</span> <span class="o">+=</span> <span class="n">score</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Return the current counter value.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Set a new counter value.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="o">(</span><span class="kt">int</span> <span class="n">newValue</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">newValue</span><span class="o">;</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">newValue</span><span class="o">;</span>
+        <span class="n">updateImage</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Update the image on screen to show the current value.</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">updateImage</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">GreenfootImage</span> <span class="n">image</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GreenfootImage</span><span class="o">(</span><span class="n">background</span><span class="o">);</span>
+        <span class="n">GreenfootImage</span> <span class="n">text</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GreenfootImage</span><span class="o">(</span><span class="s">&quot;&quot;</span> <span class="o">+</span> <span class="n">value</span><span class="o">,</span> <span class="mi">22</span><span class="o">,</span> <span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">,</span> <span class="n">transparent</span><span class="o">);</span>
+        <span class="n">image</span><span class="o">.</span><span class="na">drawImage</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="o">(</span><span class="n">image</span><span class="o">.</span><span class="na">getWidth</span><span class="o">()-</span><span class="n">text</span><span class="o">.</span><span class="na">getWidth</span><span class="o">())/</span><span class="mi">2</span><span class="o">,</span> 
+                        <span class="o">(</span><span class="n">image</span><span class="o">.</span><span class="na">getHeight</span><span class="o">()-</span><span class="n">text</span><span class="o">.</span><span class="na">getHeight</span><span class="o">())/</span><span class="mi">2</span><span class="o">);</span>
+        <span class="n">setImage</span><span class="o">(</span><span class="n">image</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>修改CrabWorld程式碼，新增一個counter屬性與物件，並新增getCounter方法。</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (Actor, World, Greenfoot, GreenfootImage)</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CrabWorld</span> <span class="kd">extends</span> <span class="n">World</span>
+<span class="o">{</span>
+<span class="hll">    <span class="kd">private</span> <span class="n">Counter</span> <span class="n">counter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Counter</span><span class="o">();</span>    
+</span>    
+    <span class="cm">/**</span>
+<span class="cm">     * 建立螃蟹的世界（沙灘）。螃蟹的世界有 560×560 格方格，每格方格大</span>
+<span class="cm">     * 小為 1×1 點。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">CrabWorld</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="mi">560</span><span class="o">,</span> <span class="mi">560</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+
+        <span class="n">prepare</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 準備應用程式啟動時的世界, 也就是：建立一開始的世界</span>
+<span class="cm">     * 物件以及將它們加到世界中</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">prepare</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Crab</span> <span class="n">crab</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Crab</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">crab</span><span class="o">,</span> <span class="mi">235</span><span class="o">,</span> <span class="mi">280</span><span class="o">);</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">Worm</span> <span class="n">worm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Worm</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getRandomNumber</span><span class="o">(</span><span class="mi">560</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getRandomNumber</span><span class="o">(</span><span class="mi">560</span><span class="o">);</span>
+            <span class="n">addObject</span><span class="o">(</span><span class="n">worm</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">Lobster</span> <span class="n">lobster</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">125</span><span class="o">);</span>
+        <span class="n">Lobster</span> <span class="n">lobster2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster2</span><span class="o">,</span> <span class="mi">429</span><span class="o">,</span> <span class="mi">285</span><span class="o">);</span>
+        <span class="n">Lobster</span> <span class="n">lobster3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lobster</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">lobster3</span><span class="o">,</span> <span class="mi">214</span><span class="o">,</span> <span class="mi">455</span><span class="o">);</span>
+        
+<span class="hll">        <span class="n">addObject</span><span class="o">(</span><span class="n">counter</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mi">500</span><span class="o">);</span>
+</span>        
+    <span class="o">}</span>
+    
+<span class="hll">    <span class="kd">public</span> <span class="n">Counter</span> <span class="nf">getCounter</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="hll">        <span class="k">return</span> <span class="n">counter</span><span class="o">;</span>
+</span><span class="hll">    <span class="o">}</span>
+</span><span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>修改Crab程式碼，取得counter物件，吃到蟲時將counter增加1。</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="cm">/**</span>
+<span class="cm">     * 遇到蟲就把它吃掉</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">lookForWorm</span><span class="o">()</span> <span class="o">{</span>
+<span class="hll">        <span class="n">CrabWorld</span> <span class="n">world</span> <span class="o">=</span> <span class="o">(</span><span class="n">CrabWorld</span><span class="o">)</span> <span class="n">getWorld</span><span class="o">();</span>
+</span><span class="hll">        <span class="n">Counter</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="na">getCounter</span><span class="o">();</span>
+</span>        <span class="k">if</span> <span class="o">(</span><span class="n">canSee</span><span class="o">(</span><span class="n">Worm</span><span class="o">.</span><span class="na">class</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">eat</span><span class="o">(</span><span class="n">Worm</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+            <span class="c1">//播放聲音</span>
+            <span class="n">Greenfoot</span><span class="o">.</span><span class="na">playSound</span><span class="o">(</span><span class="s">&quot;slurp.wav&quot;</span><span class="o">);</span>
+<span class="hll">            <span class="n">counter</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span>        <span class="o">}</span>     
+    <span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id6">
+<h2>6.吃到5隻就遊戲結束<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>修改Crab程式碼，增加判斷程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="cm">/**</span>
+<span class="cm">     * 遇到蟲就把它吃掉</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">lookForWorm</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">CrabWorld</span> <span class="n">world</span> <span class="o">=</span> <span class="o">(</span><span class="n">CrabWorld</span><span class="o">)</span> <span class="n">getWorld</span><span class="o">();</span>
+        <span class="n">Counter</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="na">getCounter</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">canSee</span><span class="o">(</span><span class="n">Worm</span><span class="o">.</span><span class="na">class</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">eat</span><span class="o">(</span><span class="n">Worm</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+            <span class="c1">//播放聲音</span>
+            <span class="n">Greenfoot</span><span class="o">.</span><span class="na">playSound</span><span class="o">(</span><span class="s">&quot;slurp.wav&quot;</span><span class="o">);</span>
+            <span class="n">counter</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+        <span class="o">}</span>
+<span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">counter</span><span class="o">.</span><span class="na">getValue</span><span class="o">()==</span><span class="mi">5</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">            <span class="n">Greenfoot</span><span class="o">.</span><span class="na">playSound</span><span class="o">(</span><span class="s">&quot;fanfare.wav&quot;</span><span class="o">);</span>
+</span><span class="hll">            <span class="n">Greenfoot</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+</span><span class="hll">        <span class="o">}</span>        
+</span>    <span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="homework-2">
+<h1>Homework：案例研究─小精靈(2)<a class="headerlink" href="#homework-2" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference download internal" href="https://drive.google.com/open?id=0B8fsh0D6-sHnSjVoLWNsMnlPenc"><code class="xref download docutils literal"><span class="pre">案例下載(.zip)</span></code></a></p>
+<p>自動建立一個小精靈，四個鬼(在隨機位置)</p>
+<p>製作鬼的動畫</p>
+<p>鬼會四處遊盪</p>
+<p>用鍵盤控制小精靈，碰到鬼就把它吃掉，有計數器</p>
+<p>吃到四個鬼就遊戲結束</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lesson03：案例研究─沙灘螃蟹(2)</a><ul>
+<li><a class="reference internal" href="#crab">Crab 程式碼說明</a></li>
+<li><a class="reference internal" href="#id1">1.自訂方法</a></li>
+<li><a class="reference internal" href="#id2">2.隨機產生1隻蟲在不同的位置</a></li>
+<li><a class="reference internal" href="#id3">3.隨機產生5隻蟲在不同的位置</a></li>
+<li><a class="reference internal" href="#id4">4.螃蟹動畫製作</a></li>
+<li><a class="reference internal" href="#id5">5.增加計數器</a></li>
+<li><a class="reference internal" href="#id6">6.吃到5隻就遊戲結束</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#homework-2">Homework：案例研究─小精靈(2)</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Lesson02.html" title="previous chapter">Lesson02：案例研究─沙灘螃蟹(1)</a></li>
+      <li>Next: <a href="Lesson04.html" title="next chapter">Lesson04：案例研究─鋼琴模擬</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Lesson03.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Jean.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/Lesson03.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

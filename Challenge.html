@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>挑戰題：案例練習─踩地雷簡化版 &mdash; greenfoot 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="greenfoot 1.0 documentation" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>挑戰題：案例練習─踩地雷簡化版<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference download internal" href="_downloads/MineSweepSimple.jar"><code class="xref download docutils literal"><span class="pre">執行檔下載(.jar)</span></code></a></p>
+<p><a class="reference download internal" href="_downloads/MineSweep.zip"><code class="xref download docutils literal"><span class="pre">案例下載(.zip)</span></code></a></p>
+<p>玩法</p>
+<p>掀開一個地雷，遊戲便結束。掀開一個空的方塊，您可以繼續玩。</p>
+<p>掀開一個號碼，表示在周圍八個方塊內隱藏多少個地雷，這可用來推論附近的方塊是否安全。</p>
+<p>提示和秘訣</p>
+<p>如果確定某方塊有地雷，請在該方塊上按一下滑鼠右鍵。該方塊會出現一個旗標。</p>
+<p>製作流程</p>
+<p>任務一：產生10X10個磚塊</p>
+<p>任務二：使用ArrayList來儲存磚塊。</p>
+<p>任務三：產生10個有炸彈的磚塊，放在隨機的位置</p>
+<p>任務四：按下滑鼠右鍵，可以插旗子或取消插旗子。</p>
+<p>任務五：按下滑鼠左鍵，可以打開磚塊。如果是炸彈，則顯示炸彈，如果不是炸彈，則顯示此磚塊週邊有幾個炸彈。</p>
+<p>任務六：打開後的磚塊不能再插旗子。</p>
+<p>任務七：若是開到炸彈，則顯示所有炸彈，然後遊戲結束。</p>
+<p>任務八：若是該磚塊周圍的磚塊的炸彈數是零，則再展開該磚塊。(遞迴) (沒學過遞迴可不作此項任務)</p>
+<p>任務九：檢查10個炸彈磚塊是否都被標上旗子，若是，則播放音樂，遊戲停止。</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Challenge.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Jean.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/Challenge.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

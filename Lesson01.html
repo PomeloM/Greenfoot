@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lesson01:案例研究─袋熊吃樹葉 &mdash; greenfoot 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="greenfoot 1.0 documentation" href="index.html" />
+    <link rel="next" title="Lesson02：案例研究─沙灘螃蟹(1)" href="Lesson02.html" />
+    <link rel="prev" title="?{??Greenfoot" href="Lesson00.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson01">
+<h1>Lesson01:案例研究─袋熊吃樹葉<a class="headerlink" href="#lesson01" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference download internal" href="https://drive.google.com/open?id=0B8fsh0D6-sHna2hWd1h3TE0zZXc"><code class="xref download docutils literal"><span class="pre">案例下載(.zip)</span></code></a></p>
+<p>本案例出自Michael Kölling(2009).Introduction to Programming with Greenfoot.</p>
+<p>開啟範例檔案「Wombat」後，可以看到以下的畫面。其中，畫面左方是程式執行結果所顯示的場景，在右方可以瀏覽所有的物件類別及其關係圖，在畫面下方是執行控制列，可以控制程式的執行與暫停。</p>
+<img alt="_images/002_001.png" src="_images/002_001.png" />
+<p>在這個範例中，網格區域所展示的是遊戲的場景(World)，而網格中可以呈現的物體則被稱為遊戲的演員(Actor)，每一個Greenfoot遊戲都需要繼承場景(World)和演員(Acotr)類別，來建立自己的遊戲世界和遊戲角色。從「類別關係圖」中可以看到這個遊戲場景的類別名稱是「WombatWorld」，而遊戲中的兩個演員類別名稱分別為「Wombat(袋熊)」和「Leaf(樹葉)」。</p>
+<img alt="_images/wombat.jpg" src="_images/wombat.jpg" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">袋熊，是澳洲的有袋類動物。牠們的腳短及肌肉發達，身長約有1米，尾巴亦很短。袋熊是草食性的，主要以草、莎草科、香草、樹皮及樹根為食物。</p>
+</div>
+<div class="section" id="id1">
+<h2>物件基本概念<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Greenfoot是物件導向程式設計開發環境。物件導向程式設計的主要概念，是將日常生活中的物件概念應用在軟體設計裏。在物件導向程式設計中，程式是由一群物件(object)所組成的，而類別(class)是物件的基礎，用來描述物件的特性(attribute)和行為(behavior)。</p>
+<p>從Greenfoot的「類別關係圖」可以看出：</p>
+<p>(1)目前這個應用程式包含那些類別</p>
+<p>(2)這些類別之間的關係</p>
+<p>在「Wombat」範例中，定義了「Wombat(袋熊)」和「Leaf(樹葉)」兩個演員類別，這兩個類別都繼承了「Actor」類別。因此，「Actor」稱為父類別(superclas)，而「Wombat」和「Leaf」稱為子類別(subclass)。繼承(inheritance)是物件導向程式設計的重要概念，父類別的資源(特性及行為)其子類別可以繼承使用，它使得程式碼與程式觀念可以很容易的被再使用(reuse)。</p>
+<p>類別定義完成後，就可以根據類別來產生物件，根據類別所產生的物件，稱為實體(instance)。當我們定義好了「Wombat」類別之後，就可以根據類別來產生物件實體。現在，讓我們根據Wombat類別來產生袋熊物件：</p>
+<ol class="arabic simple">
+<li>指向類別關係圖中的Wombat並按下滑鼠右鍵。</li>
+<li>從快顯功能表中選取「new Wombat()」，此時螢幕上會出現一隻袋熊。</li>
+<li>可將袋熊拖曳至場景中的任何位置，按下滑鼠左鍵將袋熊置入場景中。</li>
+</ol>
+<img alt="_images/002_002.png" src="_images/002_002.png" />
+<p>因為類別(class)定義物件的特性與行為，而根據類別所建立的物件就會具備這些特性與行為。以wombat物件為例，牠具備了「move」、「turnLeft」等行為。在物件實體上按右鍵可檢視物件所具備的特性與行為。</p>
+<img alt="_images/002_003.png" src="_images/002_003.png" />
+</div>
+<div class="section" id="id2">
+<h2>呼叫物件的方法<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>類別中所定義的行為稱為方法(method)，試著呼叫wombat物件的move()方法，看看這個方法的功能是什麼？再試著呼叫wombat物件的turnLeft()方法，看看這方法的功能是什麼？</p>
+<p>在方法前面的關鍵字，如void、boolean、int等，代表方法的 <strong>回傳值</strong> 資料型態，即這個方法被呼叫時，會回傳什麼型態的資訊。</p>
+<p><strong>void</strong> 代表這個方法沒有回傳值。</p>
+<p><strong>int</strong> 代表這個方法將回傳一個整數。</p>
+<p><strong>boolean</strong> 代表這個方法將回傳一個布林值。</p>
+<p>當呼叫具有回傳值的方法時，系統會以訊息方塊回傳相關的資訊，例如：呼叫「boolean canMove()」方法，系統將以訊息方塊回傳true或false。如果袋熊的位置是在邊緣，不能再往前移動，這時候呼叫canMove()方法的回傳值是false。</p>
+<img alt="_images/002_007.png" src="_images/002_007.png" />
+<p>在方法名稱後面小括弧內的資訊，稱為 <strong>參數</strong> (parameter)。</p>
+<p><strong>void act( )</strong>：代表呼叫時，不需傳遞額外資訊。</p>
+<p>當呼叫具有參數的方法時，系統會以訊息方塊要求你輸入值給這個方法。例如：呼叫「void setDirection(int direction)」方法，代表呼叫時，需傳入一個整數資料，而且setDirection方法內部以direction這個名稱來代表所接收的參數值。</p>
+<img alt="_images/002_008.png" src="_images/002_008.png" />
+</div>
+<div class="section" id="id3">
+<h2>程式的執行<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>由「執行控制列」也可以呼叫物件中的方法。</p>
+<img alt="_images/002_004.png" src="_images/002_004.png" />
+<ol class="arabic simple">
+<li>按「單步執行」按鈕，會呼叫每一個物件的act()方法一次。</li>
+<li>按「執行」按鈕，會重複呼叫每一個物件的act()方法。</li>
+</ol>
+<p>如果把整個Greenfoot的場景視為一個微世界(microworld），那麼微世界中的每一個物件就像是演員，我們程式要操弄的也就是這些演員間的互動方式。放到微世界中的物件(演員)都有act()方法。不同類別物件的act()方法都各自定義自己的程式功能，所以執行不同類別物件的Act方法將產生不同的結果。</p>
+<p>以袋熊的act()方法為例，其程式功能如下：</p>
+<ol class="arabic simple">
+<li>若袋熊剛好坐在樹葉上，那就吃了樹葉。</li>
+<li>若袋熊沒遇到邊界，那就往前走；</li>
+<li>若遇到邊界就左轉。</li>
+</ol>
+<p>建立幾隻袋熊和樹葉，然後按「單步執行」按鈕，觀察這些袋熊的行為。</p>
+<img alt="_images/002_005.png" src="_images/002_005.png" />
+<p>按下「執行」按鈕，觀察產生了什麼結果？</p>
+<div class="topic">
+<p class="topic-title first">小技巧</p>
+<p>選取類別關係圖中的「Leaf」，按下鍵盤 <strong>shift</strong> 鍵不放，使用滑鼠左鍵在場景上點一下，可以快速地建立物件實體。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>觀念複習<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/002_006.png" src="_images/002_006.png" />
+</div>
+<div class="section" id="id5">
+<h2>教學影片<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<iframe width="660" height="495" src="https://www.youtube.com/embed/cTA0zIqeawk" frameborder="0" allowfullscreen></iframe>
+<h2>案例練習：太空隕石<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference download internal" href="https://drive.google.com/open?id=0B8fsh0D6-sHnZXl0UVQ0ZldoeDA"><code class="xref download docutils literal"><span class="pre">案例下載(.zip)</span></code></a></p>
+<img alt="_images/002_009.png" src="_images/002_009.png" />
+<p>如何加速？如何減速？如何發射子彈？如何加快子彈的發射？</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lesson01:案例研究─袋熊吃樹葉</a><ul>
+<li><a class="reference internal" href="#id1">物件基本概念</a></li>
+<li><a class="reference internal" href="#id2">呼叫物件的方法</a></li>
+<li><a class="reference internal" href="#id3">程式的執行</a></li>
+<li><a class="reference internal" href="#id4">觀念複習</a></li>
+<li><a class="reference internal" href="#id5">教學影片</a></li>
+<li><a class="reference internal" href="#id6">案例練習：太空隕石</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Lesson00.html" title="previous chapter">?{??Greenfoot</a></li>
+      <li>Next: <a href="Lesson02.html" title="next chapter">Lesson02：案例研究─沙灘螃蟹(1)</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Lesson01.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Jean.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/Lesson01.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,1874 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lesson06:案例研究─撲克牌發牌 &mdash; greenfoot 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="greenfoot 1.0 documentation" href="index.html" />
+    <link rel="next" title="Lesson07:案例研究：踩地雷：任務一" href="Lesson07.html" />
+    <link rel="prev" title="Lesson05：案例研究─點燈遊戲" href="Lesson05.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson06">
+<h1>Lesson06:案例研究─撲克牌發牌<a class="headerlink" href="#lesson06" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference download internal" href="https://drive.google.com/open?id=0B8fsh0D6-sHnQU9XTHZ6ek5kMFE"><code class="xref download docutils literal"><span class="pre">案例下載(.zip)</span></code></a></p>
+<img alt="_images/w5_01.png" src="_images/w5_01.png" />
+<p>準備1張撲克牌的底圖：blue.png</p>
+<p>準備13張撲克牌的圖片：1.png~13.png</p>
+<p>新建場景類別Table，設定圖像「corkboard.jpg」。</p>
+<p>新建演員類別Card</p>
+<p>新建演員類別Deck，設置圖像「blue.png」</p>
+<p>編輯Table的程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 牌桌。</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Table</span> <span class="kd">extends</span> <span class="n">World</span>
+<span class="o">{</span>
+    <span class="cm">/** 還沒掀開的牌堆。 */</span>
+    <span class="kd">private</span> <span class="n">Deck</span> <span class="n">deck</span><span class="o">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 建立新的牌桌。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Table</span><span class="o">()</span>
+    <span class="o">{</span>    
+        <span class="kd">super</span><span class="o">(</span><span class="mi">600</span><span class="o">,</span> <span class="mi">400</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span> 
+        <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Deck</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">deck</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mi">100</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 每個回合執行的動作。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 如果滑鼠點在牌堆上，就發一張新牌。</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mouseClicked</span><span class="o">(</span><span class="n">deck</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">Card</span> <span class="n">card</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Card</span><span class="o">();</span>
+            <span class="n">card</span><span class="o">.</span><span class="na">setImage</span><span class="o">((</span><span class="mi">1</span><span class="o">+</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">getRandomNumber</span><span class="o">(</span><span class="mi">13</span><span class="o">))+</span><span class="s">&quot;.png&quot;</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getRandomNumber</span><span class="o">(</span><span class="n">getWidth</span><span class="o">());</span>
+            <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getRandomNumber</span><span class="o">(</span><span class="n">getHeight</span><span class="o">());</span>
+            <span class="n">addObject</span><span class="o">(</span><span class="n">card</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="id1">
+<h2>滑鼠事件<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Greenfoot.mouseClicked()</p>
+<p>方法特徵：</p>
+<p>public static boolean mouseClicked(java.lang.Object obj)</p>
+<p>方法說明：</p>
+<p>如果滑鼠在某物件上按完左鍵(按下並放開)，則傳回true。</p>
+<p>參數：</p>
+<p>obj - Typically one of Actor, World or null</p>
+<p>傳回值</p>
+<p>True / False</p>
+<p>更多滑鼠事件請參閱Greennfoot類別說明文件：</p>
+<ol class="arabic simple">
+<li>static boolean  mouseDragEnded(java.lang.Object obj)</li>
+</ol>
+<p>True if a mouse drag has ended.</p>
+<ol class="arabic simple" start="2">
+<li>static boolean  mouseDragged(java.lang.Object obj)</li>
+</ol>
+<p>True if the mouse has been dragged on the given object.</p>
+<ol class="arabic simple" start="3">
+<li>static boolean  mouseMoved(java.lang.Object obj)</li>
+</ol>
+<p>True if the mouse has been moved on the given object.</p>
+<ol class="arabic simple" start="4">
+<li>static boolean  mousePressed(java.lang.Object obj)</li>
+</ol>
+<p>True if the mouse has been pressed (changed from a non-pressed state to being pressed) on the given object.</p>
+<ol class="arabic simple" start="5">
+<li>static MouseInfo        getMouseInfo()</li>
+</ol>
+<p>Return a mouse info object with information about the state of the mouse.</p>
+</div>
+<div class="section" id="id2">
+<h2>問題改進<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>在上例中，我們使用亂數來取卡片，這樣做會有重複發同一張牌的可能性。所以接下來我們要用陣列串列(ArrayList)來儲存13張牌。</p>
+<p>增加Card類別的程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class Card here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Card</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+<span class="hll">    <span class="cm">/** 撲克牌的點數。 */</span>
+</span><span class="hll">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">value</span><span class="o">;</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="cm">/**</span>
+</span><span class="hll"><span class="cm">     * 建立新的撲克牌。</span>
+</span><span class="hll"><span class="cm">     */</span>
+</span><span class="hll">    <span class="kd">public</span> <span class="nf">Card</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span>
+</span><span class="hll">    <span class="o">{</span>
+</span><span class="hll">        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+</span><span class="hll">    <span class="o">}</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="cm">/**</span>
+</span><span class="hll"><span class="cm">     * 取得這張撲克牌的點數。</span>
+</span><span class="hll"><span class="cm">     */</span>
+</span><span class="hll">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="o">()</span>
+</span><span class="hll">    <span class="o">{</span>
+</span><span class="hll">        <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+</span><span class="hll">    <span class="o">}</span>
+</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Act - do whatever the Card wants to do. This method is called whenever</span>
+<span class="cm">     * the &#39;Act&#39; or &#39;Run&#39; button gets pressed in the environment.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="c1">// Add your action code here.</span>
+    <span class="o">}</span>    
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>增加Deck類別的程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class Deck here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Deck</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+    <span class="cm">/** 撲克牌。 */</span>
+<span class="hll">    <span class="kd">private</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;</span> <span class="n">cards</span><span class="o">;</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="cm">/**</span>
+</span><span class="hll"><span class="cm">     * 建立新的牌堆。</span>
+</span><span class="hll"><span class="cm">     */</span>
+</span><span class="hll">    <span class="kd">public</span> <span class="nf">Deck</span><span class="o">()</span>
+</span><span class="hll">    <span class="o">{</span>
+</span><span class="hll">        <span class="n">cards</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;();</span>
+</span><span class="hll">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="mi">13</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+</span><span class="hll">        <span class="o">{</span>
+</span><span class="hll">            <span class="n">cards</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Card</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">));</span>
+</span><span class="hll">        <span class="o">}</span>
+</span><span class="hll">    <span class="o">}</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="cm">/**</span>
+</span><span class="hll"><span class="cm">     * 從牌堆中取出一張牌。</span>
+</span><span class="hll"><span class="cm">     *</span>
+</span><span class="hll"><span class="cm">     * @return 取出來的撲克牌。</span>
+</span><span class="hll"><span class="cm">     */</span>
+</span><span class="hll">    <span class="kd">public</span> <span class="n">Card</span> <span class="nf">getCard</span><span class="o">()</span>
+</span><span class="hll">    <span class="o">{</span>
+</span><span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">getSize</span><span class="o">()==</span><span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class="hll">        <span class="o">}</span>
+</span><span class="hll">        <span class="n">Card</span> <span class="n">card</span> <span class="o">=</span> <span class="n">cards</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</span><span class="hll">        <span class="n">cards</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>
+</span><span class="hll">        <span class="k">return</span> <span class="n">card</span><span class="o">;</span>
+</span><span class="hll">    <span class="o">}</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="cm">/**</span>
+</span><span class="hll"><span class="cm">     * 牌堆中還有幾張牌。</span>
+</span><span class="hll"><span class="cm">     *</span>
+</span><span class="hll"><span class="cm">     * @return牌堆中還有幾張牌。</span>
+</span><span class="hll"><span class="cm">     */</span>
+</span><span class="hll">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSize</span><span class="o">()</span>
+</span><span class="hll">    <span class="o">{</span>
+</span><span class="hll">        <span class="k">return</span> <span class="n">cards</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+</span><span class="hll">    <span class="o">}</span>
+</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Act - do whatever the Deck wants to do. This method is called whenever</span>
+<span class="cm">     * the &#39;Act&#39; or &#39;Run&#39; button gets pressed in the environment.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="c1">// Add your action code here.</span>
+    <span class="o">}</span>    
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>修改Table類別的程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 牌桌。</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Table</span> <span class="kd">extends</span> <span class="n">World</span>
+<span class="o">{</span>
+    <span class="cm">/** 還沒掀開的牌堆。 */</span>
+    <span class="kd">private</span> <span class="n">Deck</span> <span class="n">deck</span><span class="o">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 建立新的牌桌。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Table</span><span class="o">()</span>
+    <span class="o">{</span>    
+        <span class="kd">super</span><span class="o">(</span><span class="mi">600</span><span class="o">,</span> <span class="mi">400</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span> 
+        <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Deck</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">deck</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mi">100</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 每個回合執行的動作。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 如果滑鼠點在牌堆上，牌堆裏還有牌，就發一張牌。</span>
+<span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mouseClicked</span><span class="o">(</span><span class="n">deck</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">deck</span><span class="o">.</span><span class="na">getSize</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">            <span class="n">Card</span> <span class="n">card</span> <span class="o">=</span> <span class="n">deck</span><span class="o">.</span><span class="na">getCard</span><span class="o">();</span>
+</span><span class="hll">            <span class="n">card</span><span class="o">.</span><span class="na">setImage</span><span class="o">(</span><span class="n">card</span><span class="o">.</span><span class="na">getValue</span><span class="o">()+</span><span class="s">&quot;.png&quot;</span><span class="o">);</span>
+</span><span class="hll">            <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getRandomNumber</span><span class="o">(</span><span class="n">getWidth</span><span class="o">());</span>
+</span><span class="hll">            <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getRandomNumber</span><span class="o">(</span><span class="n">getHeight</span><span class="o">());</span>
+</span><span class="hll">            <span class="n">addObject</span><span class="o">(</span><span class="n">card</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+</span><span class="hll">        <span class="o">}</span>
+</span>    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="arraylist">
+<h2>ArrayList<a class="headerlink" href="#arraylist" title="Permalink to this headline">¶</a></h2>
+<p>ArrayList是JAVA當中的一個類別，與Array差在於因為他是一個寫好的類別，有很多可以直接用的程式，所以很方便。</p>
+<p>使用方法:</p>
+<p>1.建構</p>
+<p>ArrayList&lt;String&gt; myList = new ArrayList&lt;String&gt;();  //指定是String的型態</p>
+<p>ArrayList myList = new ArrayList(); // 也可以不指定</p>
+<p>2.加入元素</p>
+<p>String s = new String();</p>
+<p>myList.add(s);</p>
+<p>3.查詢list大小</p>
+<p>int theSize = myList.size();</p>
+<p>4.查詢特定元素</p>
+<p>boolean isIn = myList.contains(s); //若用上面的例子 因為有s字串 所以回傳true</p>
+<p>5.查詢特定元素位置</p>
+<p>int idx = myList.indexOf(s); //會回傳0 表第0個位置</p>
+<p>6.判斷List是否為空</p>
+<p>boolean empty = myList.isEmpty(); //因為有一個元素 會回傳false</p>
+<p>7.刪除特定元素</p>
+<p>myList.remove(s);</p>
+</div>
+<div class="section" id="id3">
+<h2>問題改進<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>在上例中，我們會依序發出13張牌，但實務上，我們在發牌前會先做洗牌的動作，我們可以匯入Collections套件，來做打亂陣列串列內容的動作。</p>
+<p>在Deck類別中增加程式碼：</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="hll"><span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+</span><span class="cm">/**</span>
+<span class="cm"> * Write a description of class Deck here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Deck</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+    <span class="cm">/** 撲克牌。 */</span>
+    <span class="kd">private</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;</span> <span class="n">cards</span><span class="o">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 建立新的牌堆。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Deck</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">cards</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="mi">13</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="o">{</span>
+            <span class="n">cards</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Card</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">));</span>
+        <span class="o">}</span>
+<span class="hll">        <span class="n">Collections</span><span class="o">.</span><span class="na">shuffle</span><span class="o">(</span><span class="n">cards</span><span class="o">);</span>        
+</span>    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 從牌堆中取出一張牌。</span>
+<span class="cm">     *</span>
+<span class="cm">     * @return 取出來的撲克牌。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="n">Card</span> <span class="nf">getCard</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">getSize</span><span class="o">()==</span><span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">Card</span> <span class="n">card</span> <span class="o">=</span> <span class="n">cards</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="n">cards</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">card</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 牌堆中還有幾張牌。</span>
+<span class="cm">     *</span>
+<span class="cm">     * @return牌堆中還有幾張牌。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSize</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="n">cards</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Act - do whatever the Deck wants to do. This method is called whenever</span>
+<span class="cm">     * the &#39;Act&#39; or &#39;Run&#39; button gets pressed in the environment.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="c1">// Add your action code here.</span>
+    <span class="o">}</span>    
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>最後，當我們發完所有13張牌後，就把發牌的物件刪除，讓使用者不能再發牌。</p>
+<p>在Deck類別中修改程式碼</p>
+<hr class="docutils" />
+<p><a class="reference download internal" href="_downloads/poke.zip"><code class="xref download docutils literal"><span class="pre">案例下載(.zip)</span></code></a></p>
+</div>
+<div class="section" id="id4">
+<h2>任務一：隨機發出13張牌<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>要求：</p>
+<ol class="arabic simple">
+<li>使用ArrayList來存放13張牌。</li>
+<li>使用Collections來將ArrayList中的物件打亂。</li>
+<li>發出的牌需要一張一張排列整齊。</li>
+</ol>
+</div>
+<div class="section" id="id5">
+<h2>任務二：可以拖曳撲克牌。<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>提示：</p>
+<p>Greenfoot.mousePressed</p>
+<p>Greenfoot.mouseDragged</p>
+<p>Greenfoot.mouseDragEnded</p>
+</div>
+<div class="section" id="id6">
+<h2>任務三：拖曳中的撲克牌會在最上層，放開後會回到原地點原圖層。<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>提示：</p>
+<p>新增一個牌疊類別Pile</p>
+<p>將牌疊中的撲克牌重畫：removeObject、addObject</p>
+</div>
+<div class="section" id="cardstack">
+<h2>任務四：可以將撲克牌放到目標牌疊(CardStack)中，放好後就不能拖曳。<a class="headerlink" href="#cardstack" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id7">
+<h2>任務五：目標牌疊必須按點數大小放入。<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="id8">
+<h1>案例研究─簡易接龍：任務一<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference download internal" href="_downloads/poke.zip"><code class="xref download docutils literal"><span class="pre">案例下載(.zip)</span></code></a></p>
+<div class="section" id="id9">
+<h2>任務一：隨機發出13張牌<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>要求：</p>
+<ol class="arabic simple">
+<li>使用ArrayList來存放13張牌。</li>
+<li>使用Collections來將ArrayList中的物件打亂。</li>
+<li>發出的牌需要一張一張排列整齊。</li>
+</ol>
+<p>修改Table程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class Table here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Table</span> <span class="kd">extends</span> <span class="n">World</span>
+<span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Deck</span> <span class="n">deck</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">number</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+<span class="hll">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">card_x</span><span class="o">=</span><span class="mi">150</span><span class="o">;</span>
+</span>    
+    <span class="cm">/**</span>
+<span class="cm">     * Constructor for objects of class Table.</span>
+<span class="cm">     * </span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Table</span><span class="o">()</span>
+    <span class="o">{</span>    
+        <span class="c1">// Create a new world with 600x400 cells with a cell size of 1x1 pixels.</span>
+        <span class="kd">super</span><span class="o">(</span><span class="mi">600</span><span class="o">,</span> <span class="mi">400</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Deck</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">deck</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span> <span class="mi">50</span><span class="o">);</span>        
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mouseClicked</span><span class="o">(</span><span class="n">deck</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">number</span><span class="o">++;</span>
+<span class="hll">            <span class="n">card_x</span> <span class="o">=</span> <span class="n">card_x</span> <span class="o">+</span> <span class="mi">20</span><span class="o">;</span>
+</span>            <span class="n">addObject</span><span class="o">(</span><span class="n">deck</span><span class="o">.</span><span class="na">getCard</span><span class="o">(),</span> <span class="n">card_x</span><span class="o">,</span> <span class="mi">50</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">13</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">removeObject</span><span class="o">(</span><span class="n">deck</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Deck程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class Deck here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Deck</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+
+    <span class="cm">/** 撲克牌。 */</span>
+    <span class="kd">private</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;</span> <span class="n">cards</span><span class="o">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 建立新的牌堆。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Deck</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">cards</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="mi">13</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="o">{</span>
+            <span class="n">cards</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Card</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="n">Collections</span><span class="o">.</span><span class="na">shuffle</span><span class="o">(</span><span class="n">cards</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 從牌堆中取出一張牌。</span>
+<span class="cm">     *</span>
+<span class="cm">     * @return 取出來的撲克牌。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="n">Card</span> <span class="nf">getCard</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">getSize</span><span class="o">()==</span><span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">Card</span> <span class="n">card</span> <span class="o">=</span> <span class="n">cards</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="n">cards</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">card</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 牌堆中還有幾張牌。</span>
+<span class="cm">     *</span>
+<span class="cm">     * @return牌堆中還有幾張牌。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSize</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="n">cards</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Card程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class Card here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Card</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+    <span class="cm">/** 撲克牌的點數。 */</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">value</span><span class="o">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 建立新的撲克牌。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Card</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+        <span class="n">setImage</span><span class="o">(</span><span class="n">value</span><span class="o">+</span><span class="s">&quot;.png&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 取得這張撲克牌的點數。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Act - do whatever the Card wants to do. This method is called whenever</span>
+<span class="cm">     * the &#39;Act&#39; or &#39;Run&#39; button gets pressed in the environment.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="c1">// Add your action code here.</span>
+    <span class="o">}</span>    
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h1>案例研究─簡易接龍：任務二<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id11">
+<h2>任務二：可以拖曳撲克牌。<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>提示：</p>
+<p>Greenfoot.mousePressed</p>
+<p>Greenfoot.mouseDragged</p>
+<p>Greenfoot.mouseDragEnded</p>
+<p>修改Card程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class Card here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Card</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+    <span class="cm">/** 撲克牌的點數。 */</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">value</span><span class="o">;</span>
+    
+<span class="hll">    <span class="cm">/**  撲克牌的位置。 */</span>
+</span><span class="hll">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">;</span>
+</span>
+    <span class="cm">/**</span>
+<span class="cm">     * 建立新的撲克牌。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Card</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+        <span class="n">setImage</span><span class="o">(</span><span class="n">value</span><span class="o">+</span><span class="s">&quot;.png&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 取得這張撲克牌的點數。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Act - do whatever the Card wants to do. This method is called whenever</span>
+<span class="cm">     * the &#39;Act&#39; or &#39;Run&#39; button gets pressed in the environment.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> 
+    <span class="o">{</span>
+<span class="hll">        <span class="c1">//取得滑鼠資訊</span>
+</span><span class="hll">        <span class="n">MouseInfo</span> <span class="n">mouse</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getMouseInfo</span><span class="o">();</span>
+</span><span class="hll">        
+</span><span class="hll">        <span class="c1">//當滑鼠被按下的瞬間</span>
+</span><span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mousePressed</span><span class="o">(</span><span class="k">this</span><span class="o">))</span> <span class="o">{</span>
+</span><span class="hll">            <span class="n">x</span> <span class="o">=</span> <span class="n">getX</span><span class="o">();</span>
+</span><span class="hll">            <span class="n">y</span> <span class="o">=</span> <span class="n">getY</span><span class="o">();</span>
+</span><span class="hll">        <span class="o">}</span>
+</span><span class="hll">
+</span><span class="hll">        <span class="c1">//當滑鼠被按下且拖曳滑鼠時</span>
+</span><span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mouseDragged</span><span class="o">(</span><span class="k">this</span><span class="o">))</span> <span class="o">{</span>
+</span><span class="hll">            <span class="n">setLocation</span><span class="o">(</span><span class="n">mouse</span><span class="o">.</span><span class="na">getX</span><span class="o">(),</span> <span class="n">mouse</span><span class="o">.</span><span class="na">getY</span><span class="o">());</span>
+</span><span class="hll">        <span class="o">}</span>
+</span><span class="hll">
+</span><span class="hll">        <span class="c1">//當滑鼠拖曳結束時</span>
+</span><span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mouseDragEnded</span><span class="o">(</span><span class="k">this</span><span class="o">))</span> <span class="o">{</span>
+</span><span class="hll">            <span class="n">setLocation</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+</span><span class="hll">        <span class="o">}</span>
+</span>
+    <span class="o">}</span>    
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h1>案例研究─簡易接龍：任務三<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id13">
+<h2>任務三：拖曳中的撲克牌會在最上層，放開後會回到原地點原圖層。<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>提示：</p>
+<p>新增一個牌疊類別Pile</p>
+<p>將牌疊中的撲克牌重畫：removeObject、addObject</p>
+<p>新增Pile類別</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class Pile here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pile</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+    <span class="kd">private</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;</span> <span class="n">cards</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;();</span>
+
+    <span class="kd">public</span> <span class="nf">Pile</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addCard</span><span class="o">(</span><span class="n">Card</span> <span class="n">card</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">cards</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>
+        <span class="n">getWorld</span><span class="o">().</span><span class="na">addObject</span><span class="o">(</span><span class="n">card</span><span class="o">,</span> <span class="n">getX</span><span class="o">()+</span><span class="n">cards</span><span class="o">.</span><span class="na">size</span><span class="o">()*</span><span class="mi">15</span><span class="o">,</span> <span class="n">getY</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">reDraw</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Card</span> <span class="n">card</span><span class="o">:</span> <span class="n">cards</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">card</span><span class="o">.</span><span class="na">getX</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">card</span><span class="o">.</span><span class="na">getY</span><span class="o">();</span>
+            <span class="n">World</span> <span class="n">world</span> <span class="o">=</span> <span class="n">getWorld</span><span class="o">();</span>
+            <span class="n">world</span><span class="o">.</span><span class="na">removeObject</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>
+            <span class="n">world</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="n">card</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>修改Table程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class Table here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Table</span> <span class="kd">extends</span> <span class="n">World</span>
+<span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Deck</span> <span class="n">deck</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">number</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">card_x</span><span class="o">=</span><span class="mi">150</span><span class="o">;</span>
+<span class="hll">    <span class="kd">private</span> <span class="n">Pile</span> <span class="n">pile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pile</span><span class="o">();</span>    
+</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Constructor for objects of class Table.</span>
+<span class="cm">     * </span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Table</span><span class="o">()</span>
+    <span class="o">{</span>    
+        <span class="c1">// Create a new world with 600x400 cells with a cell size of 1x1 pixels.</span>
+        <span class="kd">super</span><span class="o">(</span><span class="mi">600</span><span class="o">,</span> <span class="mi">400</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Deck</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">deck</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span> <span class="mi">50</span><span class="o">);</span> 
+<span class="hll">        <span class="n">addObject</span><span class="o">(</span><span class="n">pile</span><span class="o">,</span> <span class="mi">150</span><span class="o">,</span> <span class="mi">50</span><span class="o">);</span>        
+</span>    <span class="o">}</span>
+
+<span class="hll">    <span class="kd">public</span> <span class="n">Pile</span> <span class="nf">getPile</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="hll">        <span class="k">return</span> <span class="n">pile</span><span class="o">;</span>   
+</span><span class="hll">    <span class="o">}</span>
+</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mouseClicked</span><span class="o">(</span><span class="n">deck</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">number</span><span class="o">++;</span>
+            <span class="n">card_x</span> <span class="o">=</span> <span class="n">card_x</span> <span class="o">+</span> <span class="mi">20</span><span class="o">;</span>
+			<span class="n">Card</span> <span class="n">card</span> <span class="o">=</span> <span class="n">deck</span><span class="o">.</span><span class="na">getCard</span><span class="o">();</span>
+            <span class="n">addObject</span><span class="o">(</span><span class="n">card</span><span class="o">,</span> <span class="n">card_x</span><span class="o">,</span> <span class="mi">50</span><span class="o">);</span>
+            <span class="n">pile</span><span class="o">.</span><span class="na">addCard</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">13</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">removeObject</span><span class="o">(</span><span class="n">deck</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>修改Card程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class Card here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Card</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+    <span class="cm">/** 撲克牌的點數。 */</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">value</span><span class="o">;</span>
+    
+    <span class="cm">/**  撲克牌的位置。 */</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 建立新的撲克牌。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Card</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+        <span class="n">setImage</span><span class="o">(</span><span class="n">value</span><span class="o">+</span><span class="s">&quot;.png&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 取得這張撲克牌的點數。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Act - do whatever the Card wants to do. This method is called whenever</span>
+<span class="cm">     * the &#39;Act&#39; or &#39;Run&#39; button gets pressed in the environment.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="c1">//取得滑鼠資訊</span>
+        <span class="n">MouseInfo</span> <span class="n">mouse</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getMouseInfo</span><span class="o">();</span>
+        
+        <span class="c1">//當滑鼠被按下的瞬間</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mousePressed</span><span class="o">(</span><span class="k">this</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">getX</span><span class="o">();</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">getY</span><span class="o">();</span>
+            
+<span class="hll">            <span class="c1">//移除後再加入，確保它是在最上層</span>
+</span><span class="hll">            <span class="n">World</span> <span class="n">world</span> <span class="o">=</span> <span class="n">getWorld</span><span class="o">();</span>
+</span><span class="hll">            <span class="n">world</span><span class="o">.</span><span class="na">removeObject</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span><span class="hll">            <span class="n">world</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>      
+</span> 
+        <span class="o">}</span>
+
+        <span class="c1">//當滑鼠被按下且拖曳滑鼠時</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mouseDragged</span><span class="o">(</span><span class="k">this</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">setLocation</span><span class="o">(</span><span class="n">mouse</span><span class="o">.</span><span class="na">getX</span><span class="o">(),</span> <span class="n">mouse</span><span class="o">.</span><span class="na">getY</span><span class="o">());</span>
+        <span class="o">}</span>
+
+        <span class="c1">//當滑鼠拖曳結束時</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mouseDragEnded</span><span class="o">(</span><span class="k">this</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">setLocation</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+<span class="hll">            <span class="c1">//將牌疊中的牌再重畫一次</span>
+</span><span class="hll">            <span class="n">Table</span> <span class="n">table</span> <span class="o">=</span> <span class="o">(</span><span class="n">Table</span><span class="o">)</span> <span class="n">getWorld</span><span class="o">();</span>
+</span><span class="hll">            <span class="n">table</span><span class="o">.</span><span class="na">getPile</span><span class="o">().</span><span class="na">reDraw</span><span class="o">();</span>           
+</span>        <span class="o">}</span>
+    <span class="o">}</span>    
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h1>案例研究─簡易接龍：任務四<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id15">
+<h2>任務四：可以將撲克牌放到目標牌疊(CardStack)中，放好後就不能拖曳。<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>新增CardStack類別</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class CardStack here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CardStack</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+    <span class="kd">private</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;</span> <span class="n">cards</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;();</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addCard</span><span class="o">(</span><span class="n">Card</span> <span class="n">card</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">cards</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>    
+        <span class="n">getWorld</span><span class="o">().</span><span class="na">addObject</span><span class="o">(</span><span class="n">card</span><span class="o">,</span> <span class="n">getX</span><span class="o">(),</span> <span class="n">getY</span><span class="o">()+</span><span class="n">cards</span><span class="o">.</span><span class="na">size</span><span class="o">()*</span><span class="mi">15</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>修改Table程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class Table here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Table</span> <span class="kd">extends</span> <span class="n">World</span>
+<span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Deck</span> <span class="n">deck</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">number</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">card_x</span><span class="o">=</span><span class="mi">150</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Pile</span> <span class="n">pile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pile</span><span class="o">();</span>   
+<span class="hll">    <span class="kd">private</span> <span class="n">CardStack</span> <span class="n">cardStack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CardStack</span><span class="o">();</span>    
+</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Constructor for objects of class Table.</span>
+<span class="cm">     * </span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Table</span><span class="o">()</span>
+    <span class="o">{</span>    
+        <span class="c1">// Create a new world with 600x400 cells with a cell size of 1x1 pixels.</span>
+        <span class="kd">super</span><span class="o">(</span><span class="mi">600</span><span class="o">,</span> <span class="mi">400</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Deck</span><span class="o">();</span>
+        <span class="n">addObject</span><span class="o">(</span><span class="n">deck</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span> <span class="mi">50</span><span class="o">);</span> 
+        <span class="n">addObject</span><span class="o">(</span><span class="n">pile</span><span class="o">,</span> <span class="mi">150</span><span class="o">,</span> <span class="mi">50</span><span class="o">);</span>        
+<span class="hll">        <span class="n">addObject</span><span class="o">(</span><span class="n">cardStack</span><span class="o">,</span> <span class="mi">500</span><span class="o">,</span> <span class="mi">50</span><span class="o">);</span>        
+</span>    <span class="o">}</span>
+
+<span class="hll">    <span class="kd">public</span> <span class="n">CardStack</span> <span class="nf">getCardStack</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="hll">        <span class="k">return</span> <span class="n">cardStack</span><span class="o">;</span>
+</span><span class="hll">    <span class="o">}</span>
+</span>
+    <span class="kd">public</span> <span class="n">Pile</span> <span class="nf">getPile</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">pile</span><span class="o">;</span>   
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mouseClicked</span><span class="o">(</span><span class="n">deck</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">number</span><span class="o">++;</span>
+            <span class="n">card_x</span> <span class="o">=</span> <span class="n">card_x</span> <span class="o">+</span> <span class="mi">20</span><span class="o">;</span>
+            <span class="n">Card</span> <span class="n">card</span> <span class="o">=</span> <span class="n">deck</span><span class="o">.</span><span class="na">getCard</span><span class="o">();</span>
+            <span class="n">addObject</span><span class="o">(</span><span class="n">card</span><span class="o">,</span> <span class="n">card_x</span><span class="o">,</span> <span class="mi">50</span><span class="o">);</span>
+            <span class="n">pile</span><span class="o">.</span><span class="na">addCard</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">13</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">removeObject</span><span class="o">(</span><span class="n">deck</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>修改Pile程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class Pile here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pile</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+    <span class="kd">private</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;</span> <span class="n">cards</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;();</span>
+
+    <span class="kd">public</span> <span class="nf">Pile</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addCard</span><span class="o">(</span><span class="n">Card</span> <span class="n">card</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">cards</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>
+        <span class="n">getWorld</span><span class="o">().</span><span class="na">addObject</span><span class="o">(</span><span class="n">card</span><span class="o">,</span> <span class="n">getX</span><span class="o">()+</span><span class="n">cards</span><span class="o">.</span><span class="na">size</span><span class="o">()*</span><span class="mi">15</span><span class="o">,</span> <span class="n">getY</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">reDraw</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Card</span> <span class="n">card</span><span class="o">:</span> <span class="n">cards</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">card</span><span class="o">.</span><span class="na">getX</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">card</span><span class="o">.</span><span class="na">getY</span><span class="o">();</span>
+            <span class="n">World</span> <span class="n">world</span> <span class="o">=</span> <span class="n">getWorld</span><span class="o">();</span>
+            <span class="n">world</span><span class="o">.</span><span class="na">removeObject</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>
+            <span class="n">world</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="n">card</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+<span class="hll">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removeCard</span><span class="o">(</span><span class="n">Card</span> <span class="n">card</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">        <span class="n">cards</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>
+</span><span class="hll">        <span class="n">getWorld</span><span class="o">().</span><span class="na">removeObject</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>
+</span><span class="hll">    <span class="o">}</span>
+</span><span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>俢改Card程式碼</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id16">
+<h2>任務五：目標牌疊必須按點數大小放入。<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p>修改CardStack程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class CardStack here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CardStack</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+    <span class="kd">private</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;</span> <span class="n">cards</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addCard</span><span class="o">(</span><span class="n">Card</span> <span class="n">card</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">cards</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">card</span><span class="o">);</span>    
+        <span class="n">getWorld</span><span class="o">().</span><span class="na">addObject</span><span class="o">(</span><span class="n">card</span><span class="o">,</span> <span class="n">getX</span><span class="o">(),</span> <span class="n">getY</span><span class="o">()+</span><span class="n">cards</span><span class="o">.</span><span class="na">size</span><span class="o">()*</span><span class="mi">15</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="hll">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAcceptCard</span><span class="o">(</span><span class="n">Card</span> <span class="n">card</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">cards</span><span class="o">.</span><span class="na">size</span><span class="o">()==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">card</span><span class="o">.</span><span class="na">getValue</span><span class="o">()==</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class="hll">        <span class="o">}</span>
+</span><span class="hll">
+</span><span class="hll">        <span class="k">if</span> <span class="o">(</span><span class="n">cards</span><span class="o">.</span><span class="na">size</span><span class="o">()&gt;</span><span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">            <span class="k">if</span> <span class="o">(</span><span class="n">cards</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">cards</span><span class="o">.</span><span class="na">size</span><span class="o">()-</span><span class="mi">1</span><span class="o">).</span><span class="na">getValue</span><span class="o">()</span> <span class="o">+</span><span class="mi">1</span> <span class="o">==</span> <span class="n">card</span><span class="o">.</span><span class="na">getValue</span><span class="o">())</span> <span class="o">{</span>
+</span><span class="hll">                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class="hll">            <span class="o">}</span>
+</span><span class="hll">        <span class="o">}</span>        
+</span><span class="hll">        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span><span class="hll">    <span class="o">}</span>
+</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>修改Card程式碼</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">greenfoot.*</span><span class="o">;</span>  <span class="c1">// (World, Actor, GreenfootImage, Greenfoot and MouseInfo)</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Write a description of class Card here.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @author (your name) </span>
+<span class="cm"> * @version (a version number or a date)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Card</span> <span class="kd">extends</span> <span class="n">Actor</span>
+<span class="o">{</span>
+    <span class="cm">/** 撲克牌的點數。 */</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">value</span><span class="o">;</span>
+
+    <span class="cm">/**  撲克牌的位置。 */</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">;</span>
+
+    <span class="cm">/** 此張牌能否拖曳 */</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">canDrag</span><span class="o">=</span><span class="kc">true</span><span class="o">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 建立新的撲克牌。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Card</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+        <span class="n">setImage</span><span class="o">(</span><span class="n">value</span><span class="o">+</span><span class="s">&quot;.png&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 取得這張撲克牌的點數。</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Act - do whatever the Card wants to do. This method is called whenever</span>
+<span class="cm">     * the &#39;Act&#39; or &#39;Run&#39; button gets pressed in the environment.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">act</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="c1">//如果不能拖曳，就跳出不執行以下的程式碼</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">canDrag</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">//取得滑鼠資訊</span>
+        <span class="n">MouseInfo</span> <span class="n">mouse</span> <span class="o">=</span> <span class="n">Greenfoot</span><span class="o">.</span><span class="na">getMouseInfo</span><span class="o">();</span>
+
+        <span class="c1">//當滑鼠被按下的瞬間</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mousePressed</span><span class="o">(</span><span class="k">this</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">getX</span><span class="o">();</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">getY</span><span class="o">();</span>
+
+            <span class="c1">//移除後再加入，確保它是在最上層</span>
+            <span class="n">World</span> <span class="n">world</span> <span class="o">=</span> <span class="n">getWorld</span><span class="o">();</span>
+            <span class="n">world</span><span class="o">.</span><span class="na">removeObject</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+            <span class="n">world</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>      
+
+        <span class="o">}</span>
+
+        <span class="c1">//當滑鼠被按下且拖曳滑鼠時</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mouseDragged</span><span class="o">(</span><span class="k">this</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">setLocation</span><span class="o">(</span><span class="n">mouse</span><span class="o">.</span><span class="na">getX</span><span class="o">(),</span> <span class="n">mouse</span><span class="o">.</span><span class="na">getY</span><span class="o">());</span>
+        <span class="o">}</span>
+
+        <span class="c1">//當滑鼠拖曳結束時</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Greenfoot</span><span class="o">.</span><span class="na">mouseDragEnded</span><span class="o">(</span><span class="k">this</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">Table</span> <span class="n">table</span> <span class="o">=</span> <span class="o">(</span><span class="n">Table</span><span class="o">)</span> <span class="n">getWorld</span><span class="o">();</span>            
+<span class="hll">            <span class="k">if</span> <span class="o">(</span><span class="n">getOneIntersectingObject</span><span class="o">(</span><span class="n">CardStack</span><span class="o">.</span><span class="na">class</span><span class="o">)!=</span><span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">table</span><span class="o">.</span><span class="na">getCardStack</span><span class="o">().</span><span class="na">isAcceptCard</span><span class="o">(</span><span class="k">this</span><span class="o">))</span> <span class="o">{</span>
+</span>                <span class="n">table</span><span class="o">.</span><span class="na">getPile</span><span class="o">().</span><span class="na">removeCard</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+                <span class="n">table</span><span class="o">.</span><span class="na">getCardStack</span><span class="o">().</span><span class="na">addCard</span><span class="o">(</span><span class="k">this</span><span class="o">);</span> 
+                <span class="n">canDrag</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">setLocation</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+                <span class="c1">//將牌疊中的牌再重畫一次</span>
+                <span class="n">table</span><span class="o">.</span><span class="na">getPile</span><span class="o">().</span><span class="na">reDraw</span><span class="o">();</span>         
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>    
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lesson06:案例研究─撲克牌發牌</a><ul>
+<li><a class="reference internal" href="#id1">滑鼠事件</a></li>
+<li><a class="reference internal" href="#id2">問題改進</a></li>
+<li><a class="reference internal" href="#arraylist">ArrayList</a></li>
+<li><a class="reference internal" href="#id3">問題改進</a></li>
+<li><a class="reference internal" href="#id4">任務一：隨機發出13張牌</a></li>
+<li><a class="reference internal" href="#id5">任務二：可以拖曳撲克牌。</a></li>
+<li><a class="reference internal" href="#id6">任務三：拖曳中的撲克牌會在最上層，放開後會回到原地點原圖層。</a></li>
+<li><a class="reference internal" href="#cardstack">任務四：可以將撲克牌放到目標牌疊(CardStack)中，放好後就不能拖曳。</a></li>
+<li><a class="reference internal" href="#id7">任務五：目標牌疊必須按點數大小放入。</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8">案例研究─簡易接龍：任務一</a><ul>
+<li><a class="reference internal" href="#id9">任務一：隨機發出13張牌</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id10">案例研究─簡易接龍：任務二</a><ul>
+<li><a class="reference internal" href="#id11">任務二：可以拖曳撲克牌。</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id12">案例研究─簡易接龍：任務三</a><ul>
+<li><a class="reference internal" href="#id13">任務三：拖曳中的撲克牌會在最上層，放開後會回到原地點原圖層。</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id14">案例研究─簡易接龍：任務四</a><ul>
+<li><a class="reference internal" href="#id15">任務四：可以將撲克牌放到目標牌疊(CardStack)中，放好後就不能拖曳。</a></li>
+<li><a class="reference internal" href="#id16">任務五：目標牌疊必須按點數大小放入。</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Lesson05.html" title="previous chapter">Lesson05：案例研究─點燈遊戲</a></li>
+      <li>Next: <a href="Lesson07.html" title="next chapter">Lesson07:案例研究：踩地雷：任務一</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Lesson06.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Jean.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/Lesson06.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
